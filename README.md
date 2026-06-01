@@ -1,2 +1,2 @@
 # CSE220-Data_Structures
-Here you can find all the lab assignments of CSE220
+Here you will find the solutions of all the lab assignments of CSE220 in Java
