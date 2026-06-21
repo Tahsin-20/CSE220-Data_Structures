@@ -1,4 +1,4 @@
-public class twoEndSum{
+public class TwoEndSum{
 
     // ===================== Node Class =====================
     static class Node {
