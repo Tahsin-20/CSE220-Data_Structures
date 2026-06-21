@@ -1,4 +1,4 @@
-public class PalindromeLinkedList {
+public class WeirdComboLinkedList {
 
     // ===================== Node Class =====================
     static class Node {
@@ -12,7 +12,6 @@ public class PalindromeLinkedList {
     }
 
     // ===================== Linked List Class =====================
-    // Named differently so it doesn't conflict with your other LinkedList file
     static class MyLinkedList2 {
         Node head;
 
@@ -31,7 +30,7 @@ public class PalindromeLinkedList {
             temp.next = newNode;
         }
 
-        // Helper function: returns node at a given index (0-based)
+        // returns the node at index (0-based)
         public Node nodeAt(int index) {
             Node temp = head;
             int count = 0;
@@ -53,52 +52,44 @@ public class PalindromeLinkedList {
         }
     }
 
-    // ===================== You will fill this method =====================
-    static boolean isPalindrome(Node head) {
-
-        Node temp=head;
+    // ===================== You will implement this =====================
+    public static int weirdCombination(Node head, int[] arr) {
         int count=0;
+        Node temp=head;
         while(temp!=null){
-            count++;
             temp=temp.next;
+            count++;
         }
-
-        int m=0;
         int n=count-1;
+        int m=0;
+        int sum=0;
+        while(m<count){
 
-        while(m<n){
-
-            Node front=head;
+            Node start=head;
             for(int i=0; i<m; i++){
-                front=front.next;
+                start=start.next;
             }
-            Node end=head;
-            for(int i=0; i<n; i++){
-                end=end.next;
-            }
-
-            if(front.elem!=end.elem){
-                return false;
-            }
+            sum+=start.elem-arr[n];
             m++;
             n--;
         }
-        return true;
+        return sum;
     }
 
     // ===================== MAIN =====================
     public static void main(String[] args) {
 
         MyLinkedList2 list = new MyLinkedList2();
-        list.insert(1);
-        list.insert(41);
-        list.insert(4);
-        list.insert(3);
         list.insert(10);
+        list.insert(23);
+        list.insert(30);
+        list.insert(14);
+
+        int[] arr = {15, 10, 56, 65};
 
         list.printList();
 
-        boolean result = isPalindrome(list.head);
-        System.out.println("Palindrome? " + result);
+        int result = weirdCombination(list.head, arr);
+        System.out.println("Result = " + result);
     }
 }

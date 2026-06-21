@@ -1,4 +1,4 @@
-public class PalindromeLinkedList {
+public class AddsCorrespondingValues {
 
     // ===================== Node Class =====================
     static class Node {
@@ -12,8 +12,7 @@ public class PalindromeLinkedList {
     }
 
     // ===================== Linked List Class =====================
-    // Named differently so it doesn't conflict with your other LinkedList file
-    static class MyLinkedList2 {
+    static class MyLinkedList {
         Node head;
 
         public void insert(int value) {
@@ -31,17 +30,6 @@ public class PalindromeLinkedList {
             temp.next = newNode;
         }
 
-        // Helper function: returns node at a given index (0-based)
-        public Node nodeAt(int index) {
-            Node temp = head;
-            int count = 0;
-            while (temp != null && count < index) {
-                temp = temp.next;
-                count++;
-            }
-            return temp;
-        }
-
         public void printList() {
             Node temp = head;
             while (temp != null) {
@@ -53,9 +41,9 @@ public class PalindromeLinkedList {
         }
     }
 
-    // ===================== You will fill this method =====================
-    static boolean isPalindrome(Node head) {
-
+    // ===================== Method YOU will write =====================
+    static int twoEndSum(Node head) {
+        
         Node temp=head;
         int count=0;
         while(temp!=null){
@@ -63,42 +51,39 @@ public class PalindromeLinkedList {
             temp=temp.next;
         }
 
-        int m=0;
-        int n=count-1;
-
-        while(m<n){
+        int i=0;
+        int j=count-1;
+        int sum=0;
+        while(i<j){
 
             Node front=head;
-            for(int i=0; i<m; i++){
+            for(int m=0; m<i; m++){
                 front=front.next;
             }
             Node end=head;
-            for(int i=0; i<n; i++){
+            for(int n=0; n<j; n++){
                 end=end.next;
             }
-
-            if(front.elem!=end.elem){
-                return false;
-            }
-            m++;
-            n--;
+            sum+=front.elem-end.elem;
+            i++;
+            j--;
         }
-        return true;
+        return sum;
     }
-
-    // ===================== MAIN =====================
+    // ===================== Main Method =====================
     public static void main(String[] args) {
 
-        MyLinkedList2 list = new MyLinkedList2();
-        list.insert(1);
-        list.insert(41);
-        list.insert(4);
+        MyLinkedList list = new MyLinkedList();
+        list.insert(9);
+        list.insert(11);
         list.insert(3);
-        list.insert(10);
+        list.insert(4);
+        list.insert(2);
+        list.insert(1);
 
         list.printList();
 
-        boolean result = isPalindrome(list.head);
-        System.out.println("Palindrome? " + result);
+        int result = twoEndSum(list.head);
+        System.out.println("Result = " + result);
     }
 }
